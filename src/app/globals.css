@@ -770,8 +770,9 @@ img {
 }
 
 .buy-modal .modal-content {
-  width: 530px;
-  max-width: 100%;
+  width: calc(100% - 40px);
+  max-width: 530px;
+  margin: auto;
   padding: 40px;
   min-height: 400px;
 }
