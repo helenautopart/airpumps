@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Hero from "./components/Hero";
-import TokenInfo from "./components/TokenInfo";
 import BuyModal from "./components/BuyModal";
 import Header from "./components/Header";
 import CountdownTimer from "./components/CountdownTimer";
@@ -101,8 +99,6 @@ export default function Home() {
         </div>
       </section>
       {showBuyModal && <BuyModal toggleBuyModal={toggleBuyModal} />}
-      {/* <Hero />
-      <TokenInfo /> */}
     </>
   );
 }

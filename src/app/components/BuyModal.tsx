@@ -92,13 +92,13 @@ export default function BuyModal({ toggleBuyModal }) {
   useEffect(() => {
     const fetchPrices = async () => {
       try {
-        /* const res = await fetch(
+        const res = await fetch(
           "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tron,doge,solana,ripple&vs_currencies=usd"
         );
         if (!res.ok) throw new Error("Failed to fetch prices");
         const data = await res.json();
-        console.log("ccccc", data); */
-        const data = {
+        console.log("ccccc", data);
+        /* const data = {
           bitcoin: {
             usd: 104201,
           },
@@ -117,11 +117,11 @@ export default function BuyModal({ toggleBuyModal }) {
           tron: {
             usd: 0.270805,
           },
-        };
+        }; */
         setPrices(data);
       } catch (err) {
         console.log(err);
-        // setError(err);
+        setError(err);
       } finally {
         setLoading(false);
       }

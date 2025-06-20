@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Signup() {
   const [form, setForm] = useState({
@@ -46,6 +46,8 @@ export default function Signup() {
         alert("Signup successful!");
       }
     } catch (err) {
+      console.log(err);
+
       setError("Failed to connect to server.");
     }
   };
