@@ -1,6 +1,10 @@
 import Image from "next/image";
 
-export default function Header({ toggleBuyModal }) {
+type BuyModalProps = {
+  toggleBuyModal: () => void; // or whatever the actual type is
+};
+
+export default function Header({ toggleBuyModal }: BuyModalProps) {
   return (
     <header className="header-section v3">
       <div className="container">
