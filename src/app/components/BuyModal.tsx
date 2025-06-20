@@ -278,7 +278,7 @@ export default function BuyModal({ toggleBuyModal }) {
                     <p style={{ marginTop: 10, fontSize: 13 }}>
                       Deposit the sum of {amount} {currency} into the wallet
                       address below, to receive your allocation of{" "}
-                      {totalValue.toLocaleString()} AirTokens
+                      {totalValue.toLocaleString()} AirToken
                     </p>
                     <Image
                       src={selectedItem.qrcode}
