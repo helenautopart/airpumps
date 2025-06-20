@@ -20,31 +20,43 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
     {
       id: 0,
       title: "SOL",
-      img: "/assets/images/icon/eth_logo.png",
+      img: "/assets/images/icon/sol_logo.svg",
       name: "solana",
       wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
       qrcode: "/assets/images/qrcode/bitcoin.png",
     },
+
     {
       id: 1,
-      title: "BTC",
-      img: "/assets/images/icon/eth_logo.png",
-      name: "bitcoin",
-      wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
-      qrcode: "/assets/images/qrcode/bitcoin.png",
-    },
-    {
-      id: 2,
       title: "ETH",
       img: "/assets/images/icon/eth_logo.png",
       name: "ethereum",
       wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
       qrcode: "/assets/images/qrcode/bitcoin.png",
     },
+
+    {
+      id: 7,
+      title: "USDT",
+      img: "/assets/images/icon/usdt_logo.png",
+      name: "tether",
+      wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
+      qrcode: "/assets/images/qrcode/bitcoin.png",
+    },
+
+    {
+      id: 2,
+      title: "BTC",
+      img: "/assets/images/icon/btc_logo.png",
+      name: "bitcoin",
+      wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
+      qrcode: "/assets/images/qrcode/bitcoin.png",
+    },
+
     {
       id: 3,
       title: "DOGE",
-      img: "/assets/images/icon/eth_logo.png",
+      img: "/assets/images/icon/doge_logo.png",
       name: "doge",
       wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
       qrcode: "/assets/images/qrcode/bitcoin.png",
@@ -52,7 +64,7 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
     {
       id: 4,
       title: "TRX",
-      img: "/assets/images/icon/eth_logo.png",
+      img: "/assets/images/icon/trx_logo.png",
       name: "tron",
       wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
       qrcode: "/assets/images/qrcode/bitcoin.png",
@@ -60,7 +72,7 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
     {
       id: 5,
       title: "XRP",
-      img: "/assets/images/icon/eth_logo.png",
+      img: "/assets/images/icon/xrp_logo.png",
       name: "ripple",
       wallet: "bc1qf2kdgu2vlctqlnlxk4smkxd68grl5q2we8dzfd",
       qrcode: "/assets/images/qrcode/bitcoin.png",
@@ -91,7 +103,7 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
     console.log("wwwwwww", showWalletAddress);
   };
 
-  const tokenPrice = 0.05;
+  const tokenPrice = 0.1;
 
   const [prices, setPrices] = useState<Prices>({});
 
@@ -107,29 +119,32 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
     const fetchPrices = async () => {
       try {
         const res = await fetch(
-          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tron,doge,solana,ripple&vs_currencies=usd"
+          "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum,tron,doge,solana,ripple,tether&vs_currencies=usd"
         );
         if (!res.ok) throw new Error("Failed to fetch prices");
         const data = await res.json();
         console.log("ccccc", data);
         /* const data = {
           bitcoin: {
-            usd: 104201,
+            usd: 105897,
           },
           doge: {
-            usd: 0.0001105,
+            usd: 0.00011098,
           },
           ethereum: {
-            usd: 2489.23,
+            usd: 2547.48,
           },
           ripple: {
-            usd: 2.14,
+            usd: 2.17,
           },
           solana: {
-            usd: 145.22,
+            usd: 148.26,
+          },
+          tether: {
+            usd: 1,
           },
           tron: {
-            usd: 0.270805,
+            usd: 0.274906,
           },
         }; */
         setPrices(data);
@@ -202,9 +217,9 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
               <>
                 {showWalletAddress == false && (
                   <div className="modal-body">
-                    <h5 className="outfit">
+                    {/* <h5 className="outfit">
                       BALANCE : <span className="wallet-balance">0 ETH</span>
-                    </h5>
+                    </h5> */}
                     <div className="input-section">
                       <label>Enter Amount</label>
                       <div className="input-dwopdown">
@@ -308,8 +323,14 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
                           <span>Copied!</span>
                         ) : (
                           <>
-                            <span>Copy</span>
-                            <span>📋</span>
+                            <span>Copy </span>{" "}
+                            <Image
+                              src={"../assets/images/icon/copy.svg"}
+                              width={12}
+                              height={12}
+                              alt="copy"
+                              style={{ marginLeft: 5 }}
+                            />
                           </>
                         )}
                       </button>

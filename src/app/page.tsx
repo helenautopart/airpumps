@@ -35,9 +35,7 @@ export default function Home() {
             </h5>
             <div className="progress-section v1">
               <div className="progress-top-text">
-                <p className="orbitron">
-                  Stage {data.stage} : {data.bonus}% Bonus !
-                </p>
+                <p className="orbitron">Stage {data.stage}</p>
                 <p className="orbitron">
                   {data.totalBought.toLocaleString()} /{" "}
                   {data.totalAvailable.toLocaleString()}
@@ -55,9 +53,10 @@ export default function Home() {
 
             <div className="price-text">
               <p className="orbitron wt-600">
-                1 <span className="gittu-token-symbol">AIRTK</span> = 0.050 USD
+                1 <span className="gittu-token-symbol">AIRTK</span> = 0.10 USD
               </p>
-              <p className="orbitron wt-600">NEXT STAGE PRICE = 0.065 USD</p>
+              <p className="orbitron wt-600">NEXT STAGE PRICE = 0.15 USD</p>
+              <p className="orbitron wt-600">MOQ = 300 USD</p>
             </div>
             <button
               type="button"
@@ -83,7 +82,7 @@ export default function Home() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://discord.com/" target="_blank">
+                  <a href="https://twitter.com/" target="_blank">
                     <Image
                       width={20}
                       height={20}
