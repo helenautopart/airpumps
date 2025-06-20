@@ -772,7 +772,7 @@ img {
 .buy-modal .modal-content {
   width: calc(100% - 40px);
   max-width: 530px;
-  margin: auto;
+  margin: 30px auto;
   padding: 40px;
   min-height: 400px;
 }
@@ -942,7 +942,7 @@ img {
 }
 
 .wcopyHolder code {
-  font-size: 0.85em;
+  font-size: 0.7em;
 }
 
 .wcopyHolder button {

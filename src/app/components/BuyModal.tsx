@@ -110,7 +110,7 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
 
-  const [amount, setAmount] = useState(0.5);
+  const [amount, setAmount] = useState<string>("0.5");
   const [currency, setCurrency] = useState("solana");
   const [usdValue, setUsdValue] = useState(0);
   const [totalValue, settotalValue] = useState(0);
@@ -160,9 +160,9 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
   }, []);
 
   useEffect(() => {
-    if (amount && !isNaN(amount)) {
+    if (amount && amount != "") {
       const price = prices[currency]?.usd || 0;
-      const usdValue = amount * price;
+      const usdValue = parseFloat(amount) * price;
       const total = usdValue / tokenPrice;
 
       console.log(prices, price, currency, amount, usdValue);
@@ -227,7 +227,9 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
                           type="number"
                           placeholder="0"
                           value={amount}
-                          onChange={(e) => setAmount(Number(e.target.value))}
+                          onChange={(e) => setAmount(e.target.value)}
+                          min="0"
+                          step="0.1"
                         />
                         <div
                           className="token-dropdown"
