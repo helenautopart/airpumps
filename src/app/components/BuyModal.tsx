@@ -3,7 +3,19 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-export default function BuyModal({ toggleBuyModal }) {
+type BuyModalProps = {
+  toggleBuyModal: () => void; // or whatever the actual type is
+};
+
+type PriceData = {
+  usd: number;
+};
+
+type Prices = {
+  [currency: string]: PriceData;
+};
+
+export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
   const items = [
     {
       id: 0,
@@ -80,9 +92,11 @@ export default function BuyModal({ toggleBuyModal }) {
   };
 
   const tokenPrice = 0.05;
-  const [prices, setPrices] = useState({});
+
+  const [prices, setPrices] = useState<Prices>({});
+
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<null | string>(null);
 
   const [amount, setAmount] = useState(0.5);
   const [currency, setCurrency] = useState("solana");
@@ -121,7 +135,7 @@ export default function BuyModal({ toggleBuyModal }) {
         setPrices(data);
       } catch (err) {
         console.log(err);
-        setError(err);
+        setError((err as Error).message);
       } finally {
         setLoading(false);
       }
@@ -133,7 +147,7 @@ export default function BuyModal({ toggleBuyModal }) {
   useEffect(() => {
     if (amount && !isNaN(amount)) {
       const price = prices[currency]?.usd || 0;
-      const usdValue = parseFloat(amount) * price;
+      const usdValue = amount * price;
       const total = usdValue / tokenPrice;
 
       console.log(prices, price, currency, amount, usdValue);
@@ -142,7 +156,7 @@ export default function BuyModal({ toggleBuyModal }) {
     }
   }, [prices, currency, amount]);
 
-  const formatUSD = (value) =>
+  const formatUSD = (value: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
@@ -198,7 +212,7 @@ export default function BuyModal({ toggleBuyModal }) {
                           type="number"
                           placeholder="0"
                           value={amount}
-                          onChange={(e) => setAmount(e.target.value)}
+                          onChange={(e) => setAmount(Number(e.target.value))}
                         />
                         <div
                           className="token-dropdown"
