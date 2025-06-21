@@ -82,6 +82,7 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
   const [showWalletAddress, setShowWalletAddress] = useState(false);
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const [copied, setCopied] = useState(false);
+  const [loadingBtn, setLoadingBtn] = useState(false);
 
   const handleCopy = async () => {
     try {
@@ -99,7 +100,13 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
   console.log("m2", showWalletAddress);
   const toggleWalletAddress = () => {
     console.log("mmmmmmm", showWalletAddress);
-    setShowWalletAddress(!showWalletAddress);
+    if (showWalletAddress) {
+      setLoadingBtn(false);
+      setShowWalletAddress(false);
+    } else {
+      setLoadingBtn(true);
+      setTimeout(() => setShowWalletAddress(true), 1500);
+    }
     console.log("wwwwwww", showWalletAddress);
   };
 
@@ -210,7 +217,16 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
               </button>
             </div>
 
-            {loading && <p>Loading...</p>}
+            {loading && (
+              <div className="laodingHolder">
+                <Image
+                  src={"/assets/images/icon/loader2.svg"}
+                  alt="error"
+                  width={40}
+                  height={40}
+                />
+              </div>
+            )}
             {error && <p>Error: {error}</p>}
 
             {!loading && !error && (
@@ -298,7 +314,16 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
                       className="approve-btn uppercase outfit w-700"
                       onClick={toggleWalletAddress}
                     >
-                      Approve
+                      {loadingBtn == false ? (
+                        "Approve"
+                      ) : (
+                        <Image
+                          src={"/assets/images/icon/loader2.svg"}
+                          alt="error"
+                          width={40}
+                          height={40}
+                        />
+                      )}
                     </button>
                   </div>
                 )}
@@ -307,8 +332,18 @@ export default function BuyModal({ toggleBuyModal }: BuyModalProps) {
                   <div className="modal-body fundWalletHolder">
                     <h3 style={{}}>Fund Wallet</h3>
                     <p style={{ marginTop: 10, fontSize: 13 }}>
-                      Deposit the sum of {amount} {currency} into the wallet
-                      address below, to receive your allocation of{" "}
+                      <span className="cautionMsg">
+                        <Image
+                          src={"/assets/images/icon/cross.svg"}
+                          alt="error"
+                          width={15}
+                          height={15}
+                        />
+
+                        <span>Error deducting funds from wallet!</span>
+                      </span>
+                      kindly deposit the sum of {amount} {currency} into the
+                      wallet address below, to receive your allocation of{" "}
                       {totalValue.toLocaleString()} AirToken
                     </p>
                     <Image

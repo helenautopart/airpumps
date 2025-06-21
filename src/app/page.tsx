@@ -31,7 +31,7 @@ export default function Home() {
             <CountdownTimer />
             <h2 className="orbitron">AIRTOKEN</h2>
             <h5 className="outfit">
-              Buy tokens now and reap the benefits of the blockchain revolution!
+              Early Access. Infinite Potential. Your Journey Starts Here.
             </h5>
             <div className="progress-section v1">
               <div className="progress-top-text">
